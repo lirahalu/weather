@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+        <label for="city">请输入城市名</label><input type="text" id="city">
+
+        <input type="submit" id="confirm" value="查询"/>
+
+        <div class="form">
+            城市名称
+            <div id="cityname"></div>
+            数据更新的当地时间
+            <div id="update-loc"></div>
+
+            空气质量指数
+            <div id="api"></div>
+            PM2.5 1小时平均值(ug/m³)
+            <div id="aqi-pm25"></div>
+            PM10 1小时平均值(ug/m³)
+            <div id="aqi-pm10"></div>
+            二氧化硫1小时平均值(ug/m³)
+            <div id="aqi-so2"></div>
+            二氧化氮1小时平均值(ug/m³)
+            <div id="aqi-no2"></div>
+            一氧化碳1小时平均值(ug/m³)
+            <div id="aqi-co"></div>
+            臭氧1小时平均值(ug/m³)
+            <div id="aqi-o3"></div>
+            空气质量类别
+            <div id="aqi-qlty"></div>
+
+            当前温度(摄氏度)
+            <div id="now-tmp"></div>
+            体感温度
+            <div id="now-fl"></div>
+            风速(Kmph)
+            <div id="now-wind-spd"></div>
+            风力等级
+            <div id="now-wind-sc"></div>
+            风向(角度)
+            <div id="now-wind-deg"></div>
+            风向(方向)
+            <div id="now-wind-dir"></div>
+            天气代码
+            <div id="now-cond-code"></div>
+            天气描述
+            <div id="now-cond-txt"></div>
+
+
+            <div id="now-cond-icon"></div>
+            降雨量(mm)
+            <div id="now-pcpn"></div>
+            湿度(%)
+            <div id="now-hum"></div>
+            气压
+            <div id="now-pres"></div>
+            能见度(km)
+            <div id="now-vis"></div>
+
+            生活指数<br/>
+            舒适指数<span id="comf-brf"></span><span id="comf-txt"></span><br/>
+            穿衣指数<span id="drsg-brf"></span><span id="drsg-txt"></span><br/>
+            紫外线指数<span id="uv-brf"></span><span id="uv-txt"></span><br/>
+            洗车指数<span id="cw-brf"></span><span id="cw-txt"></span><br/>
+            旅游指数<span id="trav-brf"></span><span id="trav-txt"></span><br/>
+            感冒指数<span id="flu-brf"></span><span id="flu-txt"></span><br/>
+            运动指数<span id="sport-brf"></span><span id="sport-txt"></span><br/>
+
+            <div id="daily1"></div>
+            <div id="daily2"></div>
+            <div id="daily3"></div>
+            <div id="daily4"></div>
+            <div id="daily5"></div>
+            <div id="daily6"></div>
+            <div id="daily7"></div>
+
+
+        </div>
+
+<script src="jquery-2.2.0.min.js"></script>
+
+<script src="main.js" charset="utf-8" type="text/javascript" language="javascript"></script>
+</body>
+</html>
