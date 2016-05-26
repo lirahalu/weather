@@ -154,6 +154,10 @@ $("#confirm").on('click',
                     //未来7天
                     for (var i = 0; i < json.daily_forecast.length; i++) {
                         var day = json.daily_forecast[i];
+                        $('#daily' + (i + 1)).find("a").html("");
+                        
+                        $('#daily' + (i + 1)).find("span").html("");
+
                         $('#daily' + (i + 1)).find("a").append(day.date);
 
                         $('#daily' + (i + 1)).find("span").append('<div class="ui-grid-a center">' + '<div class="ui-block-a">' + day.tmp.min + '&#8451;' + '&#8764;' + day.tmp.max + '&#8451;' + '</div>' + '<div class="ui-block-b">' + day.cond.txt_n + '&#160;' + '转' + '&#160;' + day.cond.txt_d + '</div>' + '</div>')
