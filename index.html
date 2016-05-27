@@ -1,90 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no" />
-    <title>weather</title>
-    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
-    <link rel="stylesheet" href="style.css" /></head>
-
-<body>
-<div data-role="page" id="pageone">
-    <div data-role="panel" id="myPanel">
-        <input type="search" placeholder="请输入城市名" id="city" data-inline="true" />
-        <a class="ui-btn ui-icon-search ui-btn-icon-right ui-btn-b ui-corner-all ui-shadow" id="confirm" data-inline="true" href="#pageone">查询</a>
-        <div id="tip"></div>
-    </div>
-    <div data-role="header" class='nav' data-position="fixed">
-        <h1 class="appname">WEATHER</h1>
-        <a href="#myPanel" data-role="button" class="select-city ui-btn ui-icon-navigation ui-btn-b  ui-btn-icon-right ui-btn-left ui-corner-all ui-shadow">选择城市</a></div>
-    <div data-role="main" class="ui-content">
-        <div>
-            <span id="cityname"></span>
-            <!-- 数据更新的当地时间 -->
-            <div class='update-time'>
-                <span id="update-loc"></span>
-                <span>更新</span></div>
-            <!-- 空气质量指数 -->
-            <div class='aqi-qlty'>
-                <span id="api"></span>
-                <!-- 空气质量类别 -->
-                <span id="aqi-qlty"></span>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no"
+        />
+        <title>
+            weather
+        </title>
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"
+        />
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div data-role="page" id="pageone">
+            <div data-role="panel" id="myPanel">
+                <input type="search" placeholder="请输入城市名" id="city" data-inline="true"
+                />
+                <a class="ui-btn ui-icon-search ui-btn-icon-right ui-btn-b ui-corner-all ui-shadow"
+                id="confirm" data-inline="true" href="#pageone">
+                    查询
+                </a>
+                <div id="tip">
+                </div>
+                <div class='clearfix'>
+                    <ul class='clearfix citylist'>
+                        <li>北京</li>
+                        <li>上海</li>
+                        <li>天津</li>
+                        <li>重庆</li>
+                        <li>广州</li>
+                        <li>杭州</li>
+                        <li>深圳</li>
+                        <li>南京</li>
+                        <li>武汉</li>
+                        <li>成都</li>
+                        <li>嘉兴</li>
+                        <li>宁波</li>
+                        <li>绍兴</li>
+                        <li>温州</li>
+                        <li>海盐</li>
+                    </ul>
+                </div>
+            </div>
+            <div data-role="header" class='nav' data-position="fixed">
+                <h1 class="appname">
+                    WEATHER
+                </h1>
+                <a href="#myPanel" data-role="button" class="select-city ui-btn ui-icon-navigation ui-btn-b  ui-btn-icon-right ui-btn-left ui-corner-all ui-shadow">
+                    选择城市
+                </a>
+            </div>
+            <div data-role="main" class="ui-content">
+                <div>
+                    <span id="cityname">
+                    </span>
+                    <!-- 数据更新的当地时间 -->
+                    <div class='update-time'>
+                        <span id="update-loc">
+                        </span>
+                        <span>
+                            更新
+                        </span>
+                    </div>
+                    <!-- 空气质量指数 -->
+                    <div class='aqi-qlty'>
+                        <span id="api">
+                        </span>
+                        <!-- 空气质量类别 -->
+                        <span id="aqi-qlty">
+                        </span>
+                    </div>
+                </div>
+                <div class="clearfix now">
+                    <span id="now-cond-icon">
+                    </span>
+                    <!-- 当前温度(摄氏度) -->
+                    <span id="now-tmp">
+                    </span>
+                </div>
+                <div class='ui-grid-a clearfix center'>
+                    <div class="ui-block-a">
+                        <!-- 风向(方向) -->
+                        <span id="now-wind-dir">
+                        </span>
+                        <!-- 风力等级 -->
+                        <span id="now-wind-sc">
+                        </span>
+                        <span class="now-wind-sc-title">级</span>
+                    </div>
+                    <div class="ui-block-b">
+                        <!-- 天气代码 -->
+                        <span id="now-cond-code">
+                        </span>
+                        <!-- 天气描述 -->
+                        <span id="now-cond-txt">
+                        </span>
+                        <!-- 湿度(%) -->
+                        湿度
+                        <span id="now-hum">
+                        </span>
+                        %
+                    </div>
+                </div>
+                <div data-role="collapsible-set" class="footer">
+                    <div data-role="collapsible" id="daily1" data-inset="false">
+                        <h1>
+                        </h1>
+                        <span>
+                        </span>
+                    </div>
+                    <div data-role="collapsible" id="daily2" data-inset="false">
+                        <h1>
+                        </h1>
+                        <span>
+                        </span>
+                    </div>
+                    <div data-role="collapsible" id="daily3" data-inset="false">
+                        <h1>
+                        </h1>
+                        <span>
+                        </span>
+                    </div>
+                    <div data-role="collapsible" id="daily4" data-inset="false">
+                        <h1>
+                        </h1>
+                        <span>
+                        </span>
+                    </div>
+                    <div data-role="collapsible" id="daily5" data-inset="false">
+                        <h1>
+                        </h1>
+                        <span>
+                        </span>
+                    </div>
+                    <div data-role="collapsible" id="daily6" data-inset="false">
+                        <h1>
+                        </h1>
+                        <span>
+                        </span>
+                    </div>
+                    <div data-role="collapsible" id="daily7" data-inset="false">
+                        <h1>
+                        </h1>
+                        <span>
+                        </span>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="clearfix now">
-            <span id="now-cond-icon"></span>
-            <!-- 当前温度(摄氏度) -->
-            <span id="now-tmp"></span>
-        </div>
-        <div class='ui-grid-a clearfix center'>
-            <div class="ui-block-a">
-                <!-- 风向(方向) -->
-                <span id="now-wind-dir"></span>
-                <!-- 风力等级 -->
-                <span id="now-wind-sc"></span>级</div>
-            <div class="ui-block-b">
-                <!-- 天气代码 -->
-                <span id="now-cond-code"></span>
-                <!-- 天气描述 -->
-                <span id="now-cond-txt"></span>
-                <!-- 湿度(%) -->湿度
-                <span id="now-hum"></span>%</div></div>
-        <div data-role="collapsible-set" class="footer">
-            <div data-role="collapsible" id="daily1" data-inset="false">
-                <h1></h1>
-                <span></span>
-            </div>
-            <div data-role="collapsible" id="daily2" data-inset="false">
-                <h1></h1>
-                <span></span>
-            </div>
-            <div data-role="collapsible" id="daily3" data-inset="false">
-                <h1></h1>
-                <span></span>
-            </div>
-            <div data-role="collapsible" id="daily4" data-inset="false">
-                <h1></h1>
-                <span></span>
-            </div>
-            <div data-role="collapsible" id="daily5" data-inset="false">
-                <h1></h1>
-                <span></span>
-            </div>
-            <div data-role="collapsible" id="daily6" data-inset="false">
-                <h1></h1>
-                <span></span>
-            </div>
-            <div data-role="collapsible" id="daily7" data-inset="false">
-                <h1></h1>
-                <span></span>
-            </div>
-        </div>
-    </div>
-</div>
-<script src="jquery-2.2.0.min.js"></script>
-<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-<script src="main.js" charset="utf-8" type="text/javascript" language="javascript"></script>
-</body>
-
+        <script src="jquery-2.2.0.min.js">
+        </script>
+        <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js">
+        </script>
+        <script src="main.js" charset="utf-8" type="text/javascript" language="javascript">
+        </script>
+    </body>
 </html>
