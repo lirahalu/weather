@@ -1,4 +1,5 @@
-﻿$(function() {
+﻿
+$(function() {//取本地存储，存储上次查询的城市，在每次软件开启的时候自动查询
     if (!localStorage.getItem("city")) {
         localStorage.setItem("city", '嘉兴');
         $('#city').val(localStorage.getItem("city"));
@@ -10,7 +11,7 @@
 
 
 
-$(function() {
+$(function() {//回车事件设置默认为查询
     document.onkeydown = function(e) {
         var ev = document.all ? window.event: e;
         if (ev.keyCode == 13) {
@@ -19,16 +20,20 @@ $(function() {
     }
 });
 
-var citylist = $(".citylist li");
+var citylist = $(".citylist li");//城市列表选择功能
 citylist.each(function() {
     $(this).click(function() {
         $('#city').val($(this).html());
+        //自动查询
+        $('#confirm').trigger("click");
     });
 });
 
 $("#confirm").on('click',
 function() {
+    //存储上次查询的城市名
     localStorage.setItem("city", $('#city').val());
+    //ajax查询数据
     $.ajax({
         type: "GET",
         url: "https://api.heweather.com/x3/weather",
@@ -39,14 +44,15 @@ function() {
         dataType: "json",
         success: function(data) {
             var json = data["HeWeather data service 3.0"][0];
-            if (data["HeWeather data service 3.0"][0].status == "ok") {
-                $("#tip").html('');
+            if (data["HeWeather data service 3.0"][0].status == "ok") {//如果返回状态成功则执行
+                $("#tip").html('');//提示为空
 
-                $('#cityname').html(json.basic.city);
+                $('#cityname').html(json.basic.city);//城市名
 
-                var now = json.basic.update.loc.substring(11, 17);
+                var now = json.basic.update.loc.substring(11, 17);//取更新数据的时间
                 $('#update-loc').html(now);
 
+                //空气质量查询
                 var api = $('.aqi-qlty');
                 $('#api').html(json.aqi.city.aqi);
                 $('#aqi-qlty').html(json.aqi.city.qlty);
@@ -87,7 +93,13 @@ function() {
                 //now
                 $('#now-tmp').html(json.now.tmp + '&#8451;');
                 $('#now-wind-sc').html(json.now.wind.sc);
-                
+                //风力描述，如果是数字则显示“级”，如果是文字则不加
+                var value = json.now.wind.sc.replace(/[^0-9]/ig,"");
+                if(!!value){
+                   $('.now-wind-sc-title').html("级");
+                }else{
+                    $('.now-wind-sc-title').html("");
+                }
                 $('#now-wind-dir').html(json.now.wind.dir);
                 $('#now-cond-code').html(json.now.cond.code);
 
@@ -190,6 +202,7 @@ function() {
                 $("#tip").html('城市名称不对');
             }
 
+            //发送请求，读取图片
             $.ajax({
                 type: "GET",
                 url: "https://api.heweather.com/x3/condition",
