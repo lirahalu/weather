@@ -76,11 +76,15 @@
 
 
             </div>
-            <div class="card">
-                <div class="card-header">日期</div>
+
+            <div class="card" id="week" v-for="day in week">
+                <div class="card-header">{{ day.date }}</div>
                 <div class="card-content">
                     <div class="card-content-inner">
-
+                        <div class="row">
+                            <div class="col-50">{{ day.tmp.min}}&#8451;&#8764;{{day.tmp.max}}&#8451;</div>
+                            <div class="col-50">{{ day.cond.txt_n}}&#160;转&#160;{{day.cond.txt_d}}</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -130,6 +134,7 @@
 <script type='text/javascript' src='zepto.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='sm.js' charset='utf-8'></script>
 <script type='text/javascript' src='sm-extend.js' charset='utf-8'></script>
+<script type='text/javascript' src='vue.js' charset='utf-8'></script>
 <script src="main.js" charset="utf-8" type="text/javascript" language="javascript"></script>
 </body>
 </html>
