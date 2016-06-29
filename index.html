@@ -1,56 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no"
-        />
-        <title>
-            weather
-        </title>
-        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"
-        />
-        <link rel="stylesheet" href="style.css" />
-    </head>
-    <body>
-        <div data-role="page" id="pageone">
-            <div data-role="panel" id="myPanel">
-                <input type="search" placeholder="请输入城市名" id="city" data-inline="true"
-                />
-                <a class="ui-btn ui-icon-search ui-btn-icon-right ui-btn-b ui-corner-all ui-shadow"
-                id="confirm" data-inline="true" href="#pageone">
-                    查询
-                </a>
-                <div id="tip">
-                </div>
-                <div class='clearfix'>
-                    <ul class='clearfix citylist'>
-                        <li>北京</li>
-                        <li>上海</li>
-                        <li>天津</li>
-                        <li>重庆</li>
-                        <li>广州</li>
-                        <li>杭州</li>
-                        <li>深圳</li>
-                        <li>南京</li>
-                        <li>武汉</li>
-                        <li>成都</li>
-                        <li>嘉兴</li>
-                        <li>宁波</li>
-                        <li>绍兴</li>
-                        <li>温州</li>
-                        <li>海盐</li>
-                    </ul>
-                </div>
-            </div>
-            <div data-role="header" class='nav' data-position="fixed">
-                <h1 class="appname">
-                    WEATHER
-                </h1>
-                <a href="#myPanel" data-role="button" class="select-city ui-btn ui-icon-navigation ui-btn-b  ui-btn-icon-right ui-btn-left ui-corner-all ui-shadow">
-                    选择城市
-                </a>
-            </div>
-            <div data-role="main" class="ui-content">
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>WEATHER</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="sm.css">
+    <link rel="stylesheet" href="sm-extend.css">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+<div class="page-group">
+    <div class="page page-current">
+        <header class="bar bar-nav">
+            <a class="icon icon-search pull-left open-panel"></a>
+            <h1 class="title">WEATHER</h1>
+        </header>
+        <!-- 这里是页面内容区 -->
+        <div class="content">
+            <div class="content-padded">
                 <div>
                     <span id="cityname">城市名</span>
                     <!-- 数据更新的当地时间 -->
@@ -76,8 +49,8 @@
                     <span id="now-tmp">当前温度
                     </span>
                 </div>
-                <div class='ui-grid-a clearfix center'>
-                    <div class="ui-block-a">
+                <div class='row clearfix center'>
+                    <div class="col-50">
                         <!-- 风向(方向) -->
                         <span id="now-wind-dir">风向
                         </span>
@@ -86,7 +59,7 @@
                         </span>
                         <span class="now-wind-sc-title"></span>
                     </div>
-                    <div class="ui-block-b">
+                    <div class="col-50">
                         <!-- 天气代码 -->
                         <span id="now-cond-code">
                         </span>
@@ -100,57 +73,68 @@
                         %
                     </div>
                 </div>
-                <div data-role="collapsible-set" class="footer">
-                    <div data-role="collapsible" id="daily1" data-inset="false">
-                        <h1>
-                        </h1>
-                        <span>
-                        </span>
-                    </div>
-                    <div data-role="collapsible" id="daily2" data-inset="false">
-                        <h1>
-                        </h1>
-                        <span>
-                        </span>
-                    </div>
-                    <div data-role="collapsible" id="daily3" data-inset="false">
-                        <h1>
-                        </h1>
-                        <span>
-                        </span>
-                    </div>
-                    <div data-role="collapsible" id="daily4" data-inset="false">
-                        <h1>
-                        </h1>
-                        <span>
-                        </span>
-                    </div>
-                    <div data-role="collapsible" id="daily5" data-inset="false">
-                        <h1>
-                        </h1>
-                        <span>
-                        </span>
-                    </div>
-                    <div data-role="collapsible" id="daily6" data-inset="false">
-                        <h1>
-                        </h1>
-                        <span>
-                        </span>
-                    </div>
-                    <div data-role="collapsible" id="daily7" data-inset="false">
-                        <h1>
-                        </h1>
-                        <span>
-                        </span>
+
+
+            </div>
+
+            <div class="card" id="week" v-for="day in week">
+                <div class="card-header">{{ day.date }}</div>
+                <div class="card-content">
+                    <div class="card-content-inner">
+                        <div class="row">
+                            <div class="col-50">{{ day.tmp.min}}&#8451;&#8764;{{day.tmp.max}}&#8451;</div>
+                            <div class="col-50">{{ day.cond.txt_n}}&#160;转&#160;{{day.cond.txt_d}}</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <script src="jquery-2.2.0.min.js">
-        </script>
-        <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js">
-        </script>
-        <script src="main.js" charset="utf-8" type="text/javascript" language="javascript">
-        </script>
-    </body>
+    </div>
+</div>
+
+<div class="panel panel-left panel-reveal">
+
+    <div class="search-input">
+        <label class="icon icon-search" for="city"></label>
+        <input type="search" id='city' placeholder='输入关键字...'/>
+    </div>
+
+        <a class="ui-btn ui-icon-search ui-btn-icon-right ui-btn-b ui-corner-all ui-shadow"
+           id="confirm" data-inline="true" href="">
+            查询
+        </a>
+        <div id="tip">
+        </div>
+        <div class=''>
+            <ul class=' citylist'>
+                <li>北京</li>
+                <li>上海</li>
+                <li>天津</li>
+                <li>重庆</li>
+                <li>广州</li>
+                <li>杭州</li>
+                <li>深圳</li>
+                <li>南京</li>
+                <li>武汉</li>
+                <li>成都</li>
+                <li>嘉兴</li>
+                <li>宁波</li>
+                <li>绍兴</li>
+                <li>温州</li>
+                <li>海盐</li>
+            </ul>
+        </div>
+        <!-- Click on link with "close-panel" class will close panel -->
+        <p><a href="#" class="close-panel">关闭</a></p>
+
+</div>
+
+
+
+<script type='text/javascript' src='zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='sm.js' charset='utf-8'></script>
+<script type='text/javascript' src='sm-extend.js' charset='utf-8'></script>
+<script type='text/javascript' src='vue.js' charset='utf-8'></script>
+<script src="main.js" charset="utf-8" type="text/javascript" language="javascript"></script>
+</body>
 </html>
