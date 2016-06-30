@@ -23,39 +23,33 @@
         </header>
         <!-- 这里是页面内容区 -->
         <div class="content">
-            <div class="content-padded">
+            <div class="content-padded" id="main">
                 <div>
-                    <span id="cityname">城市名</span>
+                    <!--城市名-->
+                    <span id="cityname">{{ json.basic.city }}</span>
                     <!-- 数据更新的当地时间 -->
                     <div class='update-time'>
-                        <span id="update-loc">更新时间</span>
-                        <span>
-                            更新
-                        </span>
+                        <span id="update-loc">{{now}}更新</span>
                     </div>
                     <!-- 空气质量指数 -->
                     <div class='aqi-qlty'>
-                        <span id="api">污染指数
-                        </span>
+                        <span id="api">{{ json.aqi.city.aqi }}</span>
                         <!-- 空气质量类别 -->
-                        <span id="aqi-qlty">空气质量类别
-                        </span>
+                        <span id="aqi-qlty">{{ json.aqi.city.qlty }}</span>
                     </div>
                 </div>
                 <div class="clearfix now">
-                    <span id="now-cond-icon">
-                    </span>
+                    <span id="now-cond-icon"></span>
                     <!-- 当前温度(摄氏度) -->
-                    <span id="now-tmp">当前温度
-                    </span>
+                    <span id="now-tmp">{{json.now.tmp}}&#8451;</span>
                 </div>
                 <div class='row clearfix center'>
                     <div class="col-50">
                         <!-- 风向(方向) -->
-                        <span id="now-wind-dir">风向
+                        <span id="now-wind-dir">{{json.now.wind.dir}}
                         </span>
                         <!-- 风力等级 -->
-                        <span id="now-wind-sc">风力
+                        <span id="now-wind-sc">{{json.now.wind.sc}}
                         </span>
                         <span class="now-wind-sc-title"></span>
                     </div>

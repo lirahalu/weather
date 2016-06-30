@@ -29,9 +29,8 @@ citylist.each(function() {
     });
 });
 
-$("#confirm").on('click',
-function() {
-    //存储上次查询的城市名
+$("#confirm").on('click', function() {
+    //存储查询的城市名
     localStorage.setItem("city", $('#city').val());
     //ajax查询数据
     $.ajax({
@@ -47,16 +46,20 @@ function() {
             if (data["HeWeather data service 3.0"][0].status == "ok") {//如果返回状态成功则执行
                 $("#tip").html('');//提示为空
 
-                $('#cityname').html(json.basic.city);//城市名
 
-                var now = json.basic.update.loc.substring(11, 17);//取更新数据的时间
-                $('#update-loc').html(now);
 
+                new Vue({
+                    el:'#main',
+                    data:{
+                        json:data["HeWeather data service 3.0"][0],
+                        now:data["HeWeather data service 3.0"][0].basic.update.loc.substring(11, 17)
+                    }
+                })
                 //空气质量查询
-                var api = $('.aqi-qlty');
-                $('#api').html(json.aqi.city.aqi);
-                $('#aqi-qlty').html(json.aqi.city.qlty);
+
+
                 var x = Math.ceil(json.aqi.city.aqi / 50);
+                var api = $('.aqi-qlty');
                 switch (x) {
                 case 1:
                     //0~50优可正常活动
@@ -91,8 +94,8 @@ function() {
                 }
 
                 //now
-                $('#now-tmp').html(json.now.tmp + '&#8451;');
-                $('#now-wind-sc').html(json.now.wind.sc);
+
+
                 //风力描述，如果是数字则显示“级”，如果是文字则不加
                 var value = json.now.wind.sc.replace(/[^0-9]/ig,"");
                 if(!!value){
@@ -100,7 +103,7 @@ function() {
                 }else{
                     $('.now-wind-sc-title').html("");
                 }
-                $('#now-wind-dir').html(json.now.wind.dir);
+
                 $('#now-cond-code').html(json.now.cond.code);
 
                 var cond = $('.content');
@@ -181,6 +184,7 @@ function() {
                     cond.css("background-color", "#00CCA3");
                     break;
                 }
+
                 $('#now-cond-txt').html(json.now.cond.txt);
                 $('#now-pcpn').html(json.now.pcpn);
                 $('#now-hum').html(json.now.hum);
