@@ -184,13 +184,6 @@ $("#confirm").on('click', function() {
                     cond.css("background-color", "#00CCA3");
                     break;
                 }
-
-                $('#now-cond-txt').html(json.now.cond.txt);
-                $('#now-pcpn').html(json.now.pcpn);
-                $('#now-hum').html(json.now.hum);
-                $('#now-pres').html(json.now.pres);
-                $('#now-vis').html(json.now.vis);
-
                 //未来7天
                 var vm= new Vue({
                     el:'#week',
