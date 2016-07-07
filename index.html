@@ -55,7 +55,7 @@
                     </div>
                     <div class="col-50">
                         <!-- 天气代码 -->
-                        <span id="now-cond-code"></span>
+                        <span id="now-cond-code" style="display: none"></span>
                         <!-- 天气描述 -->
                         <span id="now-cond-txt">{{json.now.cond.txt}}湿度</span>
                         <!-- 湿度(%) -->
@@ -89,12 +89,12 @@
         <input type="search" id='city' placeholder='输入关键字...'/>
     </div>
 
-        <a class="ui-btn ui-icon-search ui-btn-icon-right ui-btn-b ui-corner-all ui-shadow" id="confirm" data-inline="true" href="">
+        <a class="button button-round" id="confirm" data-inline="true" href="">
             查询
         </a>
         <div id="tip">
         </div>
-        <div>
+        <div class="clearfix">
             <ul class="citylist">
                 <li>北京</li>
                 <li>上海</li>
@@ -114,7 +114,7 @@
             </ul>
         </div>
         <!-- Click on link with "close-panel" class will close panel -->
-        <p><a href="#" class="close-panel">关闭</a></p>
+        <p><a href="#" class="close-panel button">关闭</a></p>
 
 </div>
 
