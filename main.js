@@ -29,6 +29,8 @@ citylist.each(function() {
     });
 });
 
+
+
 $("#confirm").on('click', function() {
     //存储查询的城市名
     localStorage.setItem("city", $('#city').val());
@@ -42,19 +44,21 @@ $("#confirm").on('click', function() {
         },
         dataType: "json",
         success: function(data) {
+            //var json=null;
             var json = data["HeWeather data service 3.0"][0];
-            if (data["HeWeather data service 3.0"][0].status == "ok") {//如果返回状态成功则执行
-                $("#tip").html('');//提示为空
-                
-                new Vue({
+                if (data["HeWeather data service 3.0"][0].status == "ok") {//如果返回状态成功则执行
+                    $("#tip").html('');//提示为空
+
+
+              new Vue({
                     el:'#main',
                     data:{
-                        json:data["HeWeather data service 3.0"][0],
-                        now:data["HeWeather data service 3.0"][0].basic.update.loc.substring(11, 17)
+                        json:json,
+                        now:json.basic.update.loc.substring(11, 17)
                     }
                 });
                 //空气质量查询
-
+               //alert(ve.$data.json.basic.city)
 
                 var x = Math.ceil(json.aqi.city.aqi / 50);
                 var api = $('.aqi-qlty');
@@ -192,28 +196,30 @@ $("#confirm").on('click', function() {
             }
 
             //发送请求，读取图片
-            $.ajax({
-                type: "GET",
-                url: "https://api.heweather.com/x3/condition",
-                data: {
-                    search: 'allcond',
-                    'key': 'bb3b0349f73b481288ab058cc22d9d3b'
-                },
-                dataType: "json",
-                success: function(data) {
-                    if (data.status = "ok") {
-                        for (var i = 0; i < data.cond_info.length; i++) {
-                            var code = $('#now-cond-code');
-                            if (code.html() == data.cond_info[i].code) {
-                                $('#now-cond-icon').html("<img src=" + data.cond_info[i].icon + ">");
 
-                                $('#now-cond-code').html('');
-                            }
-                        }
+
+        }
+    });
+
+    $.ajax({
+        type: "GET",
+        url: "https://api.heweather.com/x3/condition",
+        data: {
+            search: 'allcond',
+            'key': 'bb3b0349f73b481288ab058cc22d9d3b'
+        },
+        dataType: "json",
+        success: function(data) {
+            if (data.status = "ok") {
+                for (var i = 0; i < data.cond_info.length; i++) {
+                    var code = $('#now-cond-code');
+                    if (code.html() == data.cond_info[i].code) {
+                        $('#now-cond-icon').html("<img src=" + data.cond_info[i].icon + ">");
+
+                        $('#now-cond-code').html('');
                     }
                 }
-            });
-
+            }
         }
     });
 
