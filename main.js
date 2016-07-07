@@ -45,16 +45,14 @@ $("#confirm").on('click', function() {
             var json = data["HeWeather data service 3.0"][0];
             if (data["HeWeather data service 3.0"][0].status == "ok") {//如果返回状态成功则执行
                 $("#tip").html('');//提示为空
-
-
-
+                
                 new Vue({
                     el:'#main',
                     data:{
                         json:data["HeWeather data service 3.0"][0],
                         now:data["HeWeather data service 3.0"][0].basic.update.loc.substring(11, 17)
                     }
-                })
+                });
                 //空气质量查询
 
 
@@ -92,10 +90,6 @@ $("#confirm").on('click', function() {
                 default:
                     api.css("background-color", "rgb(0,245,61)");
                 }
-
-                //now
-
-
                 //风力描述，如果是数字则显示“级”，如果是文字则不加
                 var value = json.now.wind.sc.replace(/[^0-9]/ig,"");
                 if(!!value){
