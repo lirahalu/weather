@@ -15,7 +15,7 @@
 
 </head>
 <body>
-<div class="page-group">
+<div class="page-group"  id="main">
     <div class="page page-current">
         <header class="bar bar-nav">
             <a class="icon icon-search pull-left open-panel"></a>
@@ -23,7 +23,7 @@
         </header>
         <!-- 这里是页面内容区 -->
         <div class="content">
-            <div class="content-padded"  id="main">
+            <div class="content-padded" >
                 <div>
                     <!--城市名-->
                     <span id="cityname">{{ json.basic.city }}</span>
@@ -67,7 +67,7 @@
 
             </div>
 
-            <div class="card" id="week" v-for="day in week">
+            <div class="card" v-for="day in week">
                 <div class="card-header">{{ day.date }}</div>
                 <div class="card-content">
                     <div class="card-content-inner">

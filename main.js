@@ -30,6 +30,15 @@ citylist.each(function() {
 });
 
 
+var vm= new Vue({
+    el:'#main',
+    data:{
+        json:{},
+        now:{},
+        week:[]
+    }
+});
+
 
 $("#confirm").on('click', function() {
     //存储查询的城市名
@@ -49,14 +58,9 @@ $("#confirm").on('click', function() {
                 if (data["HeWeather data service 3.0"][0].status == "ok") {//如果返回状态成功则执行
                     $("#tip").html('');//提示为空
 
-
-              new Vue({
-                    el:'#main',
-                    data:{
-                        json:json,
-                        now:json.basic.update.loc.substring(11, 17)
-                    }
-                });
+                    vm.json=json;
+                    vm.now=json.basic.update.loc.substring(11, 17);
+                    vm.week=json.daily_forecast;
                 //空气质量查询
                //alert(ve.$data.json.basic.city)
 
@@ -183,12 +187,7 @@ $("#confirm").on('click', function() {
                     break;
                 }
                 //未来7天
-                var vm= new Vue({
-                    el:'#week',
-                    data:{
-                        week:json.daily_forecast
-                    }
-                });
+
 
 
             } else {
