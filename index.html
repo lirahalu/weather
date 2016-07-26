@@ -15,7 +15,7 @@
 
 </head>
 <body>
-<div class="page-group">
+<div class="page-group"  id="main">
     <div class="page page-current">
         <header class="bar bar-nav">
             <a class="icon icon-search pull-left open-panel"></a>
@@ -23,7 +23,7 @@
         </header>
         <!-- 这里是页面内容区 -->
         <div class="content">
-            <div class="content-padded" id="main">
+            <div class="content-padded" >
                 <div>
                     <!--城市名-->
                     <span id="cityname">{{ json.basic.city }}</span>
@@ -55,23 +55,19 @@
                     </div>
                     <div class="col-50">
                         <!-- 天气代码 -->
-                        <span id="now-cond-code">
-                        </span>
+                        <span id="now-cond-code" style="display: none"></span>
                         <!-- 天气描述 -->
-                        <span id="now-cond-txt">{{json.now.cond.txt}}
-                        </span>
+                        <span id="now-cond-txt">{{json.now.cond.txt}}湿度</span>
                         <!-- 湿度(%) -->
-                        湿度
-                        <span id="now-hum">{{json.now.hum}}
-                        </span>
-                        %
+                        <span id="now-hum">{{json.now.hum}}%</span>
+
                     </div>
                 </div>
 
 
             </div>
 
-            <div class="card" id="week" v-for="day in week">
+            <div class="card" v-for="day in week">
                 <div class="card-header">{{ day.date }}</div>
                 <div class="card-content">
                     <div class="card-content-inner">
@@ -93,14 +89,13 @@
         <input type="search" id='city' placeholder='输入关键字...'/>
     </div>
 
-        <a class="ui-btn ui-icon-search ui-btn-icon-right ui-btn-b ui-corner-all ui-shadow"
-           id="confirm" data-inline="true" href="">
+        <a class="button button-round" id="confirm" data-inline="true" href="">
             查询
         </a>
         <div id="tip">
         </div>
-        <div class=''>
-            <ul class=' citylist'>
+        <div class="clearfix">
+            <ul class="citylist">
                 <li>北京</li>
                 <li>上海</li>
                 <li>天津</li>
@@ -119,7 +114,7 @@
             </ul>
         </div>
         <!-- Click on link with "close-panel" class will close panel -->
-        <p><a href="#" class="close-panel">关闭</a></p>
+        <p><a href="#" class="close-panel button">关闭</a></p>
 
 </div>
 
